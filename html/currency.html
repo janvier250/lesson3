@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../css/currency.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>currency exchange</title>
+</head>
+<body>
+    <div class="d1">
+        <center>
+        <h1>XYZ-COMPANY</h1>
+        <h2>CURRENCY EXCHANGE PLATFORM</h2>
+    </center>
+    </div>
+    <div class="d2">
+        <div id="q1">
+        <p>Amount</p>
+        <input type="number" id="amount" name="amount" value="">
+        </div>
+        <div id="q2">
+        <p>From</p>
+        <select id="fromCurrency">
+        <option value="USD">USD</option>
+        <option value="RWF">RWF</option>
+        <option value="SHILNG">SHILNG</option>
+    </select>
+</div>
+<div id="q3">
+    <p>To</p>
+    <select id="toCurrency">
+        <option value="USD">USD</option>
+        <option value="RWF">RWF</option>
+        <option value="SHILNG">SHILNG</option>
+    </select>
+</div>
+<div id="p"><p>Result: <span id="result"></span></p></div>
+    <button onclick="convertCurrency()">Convert</button>
+    </div>
+    <div class="d3">
+        
+    </div>
+    <script>
+        function convertCurrency() {
+            const amount = parseFloat(document.getElementById('amount').value);
+            const fromCurrency = document.getElementById('fromCurrency').value;
+            const toCurrency = document.getElementById('toCurrency').value;
+
+            let convertedAmount;
+
+            if (fromCurrency === "USD" && toCurrency === "RWF") {
+                // Conversion rate from USD to RWF
+                convertedAmount = amount * 1000; // Assume 1 USD = 1000 RWF
+            } else if (fromCurrency === "RWF" && toCurrency === "USD") {
+                // Conversion rate from RWF to USD
+                convertedAmount = amount / 1000; // Assume 1 RWF = 0.001 USD
+            } else if (fromCurrency === "USD" && toCurrency === "SHILNG") {
+                // Conversion rate from USD to SHILNG
+                convertedAmount = amount * 110; // Assume 1 USD = 110 SHILNG
+            } else if (fromCurrency === "SHILNG" && toCurrency === "USD") {
+                // Conversion rate from SHILNG to USD
+                convertedAmount = amount / 110; // Assume 1 SHILNG = 0.009 USD
+            } else if (fromCurrency === "RWF" && toCurrency === "SHILNG") {
+                // Conversion rate from RWF to SHILNG
+                convertedAmount = amount * 0.11; // Assume 1 RWF = 0.11 SHILNG
+            } else if (fromCurrency === "SHILNG" && toCurrency === "RWF") {
+                // Conversion rate from SHILNG to RWF
+                convertedAmount = amount / 0.11; // Assume 1 SHILNG = 9.09 RWF
+            } else {
+                // Conversion not supported
+                alert("Conversion not supported");
+                return;
+            }
+
+            document.getElementById('result').textContent = convertedAmount.toFixed(2);
+        }
+    </script>
+</body>
+</html>
